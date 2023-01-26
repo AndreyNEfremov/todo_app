@@ -13,6 +13,8 @@ const app = express();
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "./views"));
 
+app.locals.headerTitle = "Simple TODO Application";
+
 app.use(express.static(path.join(staticPath)));
 
 app.use("/", routes());

@@ -3,8 +3,9 @@ const router = express.Router();
 
 module.exports = () => {
   router.get("/", (req, res) => {
-    res.render("pages/done", {
+    res.render("layout", {
       pageTitle: "Done page - Simple TODO Application",
+      template: "done",
     });
   });
 

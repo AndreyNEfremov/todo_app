@@ -4,8 +4,9 @@ const doneRoute = require("./done");
 
 module.exports = () => {
   router.get("/", (req, res) => {
-    res.render("pages/index", {
+    res.render("layout", {
       pageTitle: "TODO Simple Application from EPAM",
+      template: "index",
     });
   });
 

@@ -42,6 +42,9 @@ class TasksService {
    */
   async getData() {
     const data = await readFile(this.datafile, "utf8");
-    // not ended copy code from course
+    if(!data) return []
+    return JSON.parse(data)
   }
 }
+
+module.exports = TasksService;

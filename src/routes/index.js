@@ -13,7 +13,8 @@ module.exports = () => {
   router.use("/done", doneRoute());
 
   router.post("/", (req, res) => {
-    console.log(req.body);
+    console.log(req.body)
+    return res.send(req.body)
   });
 
   return router;

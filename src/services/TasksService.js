@@ -1,5 +1,5 @@
-//The TasksService methods should be all async functions. 
-//They can store data in memory, but they should return a Promise to simulate access to the database 
+//The TasksService methods should be all async functions.
+//They can store data in memory, but they should return a Promise to simulate access to the database
 
 const fs = require("fs");
 const util = require("util");
@@ -31,9 +31,9 @@ class TasksService {
    * @param {*} name The name of the task
    * @param {*} done The boolean marked if the task completed
    */
-  async addTask(id, name, done) {
+  async addTask(name) {
     const data = (await this.getData()) || [];
-    data.unshift({ id, name, done });
+    data.unshift({ name });
     return writeFile(this.datafile, JSON.stringify(data));
   }
 
@@ -42,8 +42,8 @@ class TasksService {
    */
   async getData() {
     const data = await readFile(this.datafile, "utf8");
-    if(!data) return []
-    return JSON.parse(data)
+    if (!data) return [];
+    return JSON.parse(data);
   }
 }
 

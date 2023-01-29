@@ -10,7 +10,7 @@ const routes = require("./routes");
 const TasksService = require("./services/TasksService");
 const bodyParser = require("body-parser");
 
-// const tasksService = new TasksService("./data/data.json");
+const tasksService = new TasksService("./data/data.json");
 
 const app = express();
 

@@ -5,12 +5,12 @@
 const express = require("express");
 const path = require("path");
 const PORT = 3000;
+const bodyParser = require("body-parser");
 const staticPath = path.join(__dirname, "../assets");
 const routes = require("./routes");
 const TasksService = require("./services/TasksService");
-const bodyParser = require("body-parser");
 
-const tasksService = new TasksService("./data/data.json");
+const tasksService = new TasksService("./src/data/data.json");
 
 const app = express();
 
@@ -26,7 +26,7 @@ app.use(express.static(path.join(staticPath)));
 app.use(
   "/",
   routes({
-    // tasksService,
+    tasksService,
   })
 );
 // app.use("/done", doneRoute());

@@ -33,8 +33,8 @@ class TasksService {
    */
   async addTask(name) {
     const data = (await this.getData()) || [];
-    data.unshift({ name });
-    return writeFile(this.datafile, JSON.stringify(data));
+    // data.unshift({ name }); //why does this doesn't work??
+    return writeFile(this.datafile, JSON.stringify(data)); //tadk doesn't added at file
   }
 
   /**

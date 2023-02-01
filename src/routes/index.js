@@ -7,8 +7,8 @@ module.exports = (params) => {
 
   router.get("/", async (req, res, next) => {
     try {
-      const task = await tasksService.getTaskList(); //how to render task list at main page?
-      console.log(task);
+      const tasks = await tasksService.getTaskList(); //how to render task list at main page?
+      // console.log(tasks);
       return res.render("layout", {
         pageTitle: "TODO Simple Application from EPAM",
         template: "index",

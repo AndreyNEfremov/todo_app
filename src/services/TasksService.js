@@ -29,7 +29,7 @@ class TasksService {
    * Add a new task
    * @param {*} id The task ID
    * @param {*} name The name of the task
-   * @param {*} done The boolean marked if the task completed
+   * @param {*} done The boolean marks if the task completed
    */
   async addTask(name) {
     const data = (await this.getData()) || [];
@@ -42,6 +42,7 @@ class TasksService {
    */
   async getData() {
     const data = await readFile(this.datafile, "utf8");
+    // console.log(data)
     if (!data) return [];
     return JSON.parse(data);
   }

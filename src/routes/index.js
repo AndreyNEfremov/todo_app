@@ -23,7 +23,10 @@ module.exports = (params) => {
     const { name } = req.body;
     await tasksService.addTask(name);
 
-    return res.render("pages/index"); //what the page is rendered without any styles?
+    return res.render("layout", {
+      pageTitle: "TODO Simple Application from EPAM",
+      template: "index",
+    });
   });
 
   router.use("/done", doneRoute());

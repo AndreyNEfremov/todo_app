@@ -27,14 +27,13 @@ class TasksService {
 
   /**
    * Add a new task
-   * @param {*} id The task ID
    * @param {*} name The name of the task
-   * @param {*} done The boolean marks if the task completed
    */
   async addTask(name) {
     const data = (await this.getData()) || [];
-    // data.unshift({ name }); //why does this doesn't work??
-    return writeFile(this.datafile, JSON.stringify(data)); //tadk doesn't added at file
+    console.log(data);
+    // data.unshift({ name }); //why does it doesn't work??
+    return writeFile(this.datafile, JSON.stringify(name)); //just one (latest) task added at file
   }
 
   /**
@@ -42,7 +41,6 @@ class TasksService {
    */
   async getData() {
     const data = await readFile(this.datafile, "utf8");
-    // console.log(data)
     if (!data) return [];
     return JSON.parse(data);
   }

@@ -27,13 +27,13 @@ class TasksService {
 
   /**
    * Add a new task
-   * @param {*} name The name of the task
+   * @param {*} task The name of the task
    */
-  async addTask(name) {
+  async addTask(task) {
     const data = (await this.getData()) || [];
     console.log(data);
-    // data.unshift({ name }); //why does it doesn't work??
-    return writeFile(this.datafile, JSON.stringify(name)); //just one (latest) task added at file
+    data.unshift(task);
+    return writeFile(this.datafile, JSON.stringify(data));
   }
 
   /**

@@ -3,3 +3,4 @@ node_modules/
 .vscode/
 junit.xml
 xunit.xml
+src/data/data.json

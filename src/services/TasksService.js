@@ -21,7 +21,8 @@ class TasksService {
    * Get all task items
    */
   async getTaskList() {
-    const data = await this.getData();
+    const data = await this.getData(); //add if statement, if !data return h3'no tasks here', else return list
+    console.log(data)
     return data;
   }
 
@@ -31,7 +32,6 @@ class TasksService {
    */
   async addTask(task) {
     const data = (await this.getData()) || [];
-    console.log(data);
     data.unshift(task);
     return writeFile(this.datafile, JSON.stringify(data));
   }

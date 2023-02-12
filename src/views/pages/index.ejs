@@ -1,24 +1,18 @@
-<body>
-  <main class="main">
-    <div class="task-form">
-      <form method="POST" action="/">
-        <input
-          class="input"
-          type="text"
-          name="task"
-          placeholder="I need to..."
-        />
-        <button class="task-form__button button" type="submit">Create</button>
-      </form>
+<main class="main">
+  <div class="task-form">
+    <form method="POST" action="/">
+      <input class="input" type="text" name="task" placeholder="I need to..." />
+      <button class="task-form__button button" type="submit">Create</button>
+    </form>
 
-      <div class="alert alert--error">Invalid task!</div>
+    <% if(status === 'error') {%>
+    <div class="alert alert--error"><%= message %></div>
+    <%} else if(status === 'success') {%>
+    <div class="alert alert--success"><%= message %></div>
+    <%}%>
+  </div>
 
-      <div class="alert alert--success">Task was added!</div>
-    </div>
+  <h2>Todo List</h2>
 
-    <h2>Todo List</h2>
-
-    <h3 class="no-tasks">There is no tasks.</h3>
-    <%- include ('./partials/tasks') %>
-  </main>
-</body>
+  <%- include ('./partials/tasks'); %>
+</main>

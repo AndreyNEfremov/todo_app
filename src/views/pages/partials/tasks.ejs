@@ -2,7 +2,15 @@
 
 <ul class="list">
   <li class="list__item">
-    <div class="checkbox"></div>
-    <span class="list__item-text">Get</span>
-    <!-- < % taskList.forEach(function (item, key) { console.log(item) }) %> -->
+    <div></div>
+    <% if(taskList && taskList.length) {%>
+    <ul>
+      <% taskList.forEach(function ({ task }) {%>
+      <li><%= task %></li>
+      <%})%>
+    </ul>
+    <%} else {%>
+    <h3 class="no-tasks">There is no tasks.</h3>
+    <%}%>
   </li>
+</ul>

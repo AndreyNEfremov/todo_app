@@ -22,7 +22,6 @@ class TasksService {
    */
   async getTaskList() {
     const data = await this.getData(); //add if statement, if !data return h3'no tasks here', else return list
-    console.log(data)
     return data;
   }
 
@@ -32,8 +31,8 @@ class TasksService {
    */
   async addTask(task) {
     const data = (await this.getData()) || [];
-    data.unshift(task);
-    return writeFile(this.datafile, JSON.stringify(data));
+    data.unshift({ ...task, done: false });
+    return writeFile(this.datafile, JSON.stringify({ taskList: data }));
   }
 
   /**
@@ -42,7 +41,7 @@ class TasksService {
   async getData() {
     const data = await readFile(this.datafile, "utf8");
     if (!data) return [];
-    return JSON.parse(data);
+    return JSON.parse(data).taskList;
   }
 }
 

@@ -30,9 +30,20 @@ class TasksService {
    * @param {*} task The name of the task
    */
   async addTask(task) {
-    const data = (await this.getData()) || [];
-    data.unshift({ ...task, done: false });
-    return writeFile(this.datafile, JSON.stringify({ taskList: data }));
+    if (!task || task.length < 3) {
+      throw new Error("Minimal length for task name is 3 letter!");
+    }
+
+    const taskList = await this.getTaskList();
+    const existingTask = taskList.find((item) => task === item.task);
+
+    if (existingTask) {
+      throw new Error(`Task ${task} already exists!`);
+    }
+
+    const newTask = { task, done: false };
+    taskList.unshift(newTask);
+    writeFile(this.datafile, JSON.stringify({ taskList }));
   }
 
   /**
@@ -46,3 +57,9 @@ class TasksService {
 }
 
 module.exports = TasksService;
+
+// if (req.body.task.length < 3) {
+//   response.message = "Minimal length for task name is 3 letter!";
+//   response.status = "error";
+// } else if (req.body.task) {
+//   taskList.find((task) => taskList.task === task);

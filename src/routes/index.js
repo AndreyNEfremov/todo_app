@@ -26,18 +26,20 @@ module.exports = (params) => {
       template: "index",
     };
 
-    if (req.body.task) {
-      await tasksService.addTask(req.body);
+    const task = req.body.task;
+
+    try {
+      await tasksService.addTask(task);
+
       response.message = "Task was added!";
       response.status = "success";
-    } else {
-      response.message = "Invalid task!";
+    } catch (err) {
+      response.message = err.message;
       response.status = "error";
+    } finally {
+      response.taskList = await tasksService.getTaskList();
+      return res.render("layout", response);
     }
-
-    response.taskList = await tasksService.getTaskList(); //how to render task list in main page?
-
-    return res.render("layout", response);
   });
 
   router.use("/done", doneRoute());

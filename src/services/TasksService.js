@@ -21,7 +21,7 @@ class TasksService {
    * Get all task items
    */
   async getTaskList() {
-    const data = await this.getData(); //add if statement, if !data return h3'no tasks here', else return list
+    const data = await this.getData();
     return data;
   }
 
@@ -57,9 +57,3 @@ class TasksService {
 }
 
 module.exports = TasksService;
-
-// if (req.body.task.length < 3) {
-//   response.message = "Minimal length for task name is 3 letter!";
-//   response.status = "error";
-// } else if (req.body.task) {
-//   taskList.find((task) => taskList.task === task);

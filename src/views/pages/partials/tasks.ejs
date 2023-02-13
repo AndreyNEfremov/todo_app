@@ -1,16 +1,15 @@
 <!-- should move the task list into a partial -->
 
+<% if(taskList && taskList.length) {%>
 <ul class="list">
+  <% taskList.forEach(function ({ task }) {%>
   <li class="list__item">
-    <div></div>
-    <% if(taskList && taskList.length) {%>
-    <ul>
-      <% taskList.forEach(function ({ task }) {%>
-      <li><%= task %></li>
-      <%})%>
-    </ul>
-    <%} else {%>
-    <h3 class="no-tasks">There is no tasks.</h3>
-    <%}%>
+    <span class="list__item-text">Get</span>
+    <div class="checkbox"></div>
+    <span><%= task %></span>
   </li>
+  <%})%>
 </ul>
+<%} else {%>
+<h3 class="no-tasks">There is no tasks.</h3>
+<%}%>

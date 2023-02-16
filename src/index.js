@@ -23,13 +23,7 @@ app.locals.headerTitle = "Simple TODO Application";
 
 app.use(express.static(path.join(staticPath)));
 
-app.use(
-  "/",
-  routes({
-    tasksService,
-  })
-);
-// app.use("/done", doneRoute());
+app.use("/", routes({ tasksService }));
 
 // app.get("/done", (request, response) => {
 //   response.sendFile(path.join(staticPath, "../done.html"));

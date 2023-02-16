@@ -18,11 +18,19 @@ class TasksService {
   }
 
   /**
-   * Get all task items
+   * Get task items
    */
   async getTaskList() {
     const data = await this.getData();
-    return data;
+    return data.filter(item => item.done === false);
+  }
+
+    /**
+   * Get done task items
+   */
+  async getDoneTaskList() {
+    const data = await this.getData();
+    return data.filter(item => item.done === true);
   }
 
   /**

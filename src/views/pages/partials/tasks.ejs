@@ -2,13 +2,9 @@
 <ul class="list">
   <span class="list__item-text">Get: </span>
   <% taskList.forEach(function ({ task }) {%>
-  <li>
-    <form class="list__item" method="post">
-      <!-- <div class="checkbox"></div> -->
-      <input name="done" type="checkbox" class="checkbox" value="<%=task%>" />
-      <!-- <span style="margin-left: 10px"><%= task %></span> -->
-      <label for="done"><%= task %></label>
-    </form>
+  <li class="list__item">
+    <div class="checkbox"></div>
+    <span style="margin-left: 10px"><%= task %></span>
   </li>
   <%})%>
 </ul>

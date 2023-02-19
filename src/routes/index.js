@@ -3,7 +3,7 @@ const router = express.Router();
 const doneRoute = require("./done");
 
 const commonResponse = {
-  pageTitle: "TODO Simple Application from EPAM",
+  pageTitle: "Simple TODO Application",
   template: "index",
   status: null,
   message: "",
@@ -14,7 +14,6 @@ module.exports = (params) => {
   router.get("/", async (req, res, next) => {
     try {
       const taskList = await tasksService.getToDoTaskList();
-      console.log("GET /", { taskList });
 
       return res.render("layout", {
         ...commonResponse,
@@ -28,7 +27,6 @@ module.exports = (params) => {
   router.post("/", async (req, res) => {
     const task = req.body.task;
     const response = { ...commonResponse };
-    console.log("POST /");
 
     try {
       await tasksService.addTask(task);
@@ -45,14 +43,12 @@ module.exports = (params) => {
   });
 
   router.post("/api/tasks/:taskName/done", async (req, res, next) => {
-    console.log("POST /api/tasks/:taskName/done");
     try {
       const splitUrl = req.url.split("/");
       const taskName = decodeURI(splitUrl[3]);
 
       await tasksService.makeTaskDone(taskName);
       const updatedTaskList = await tasksService.getToDoTaskList();
-      console.log({ updatedTaskList });
 
       return res.render("layout", {
         ...commonResponse,
@@ -67,5 +63,3 @@ module.exports = (params) => {
 
   return router;
 };
-// Finally, we should implement the REST endpoint /api/tasks/:taskName/done that will indicate that the task named taskName is done.
-// (Our JS script will send this request to the back end and will remove the element from the page if the request is successfully completed).

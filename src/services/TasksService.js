@@ -62,13 +62,12 @@ class TasksService {
   async getData() {
     const data = await readFile(this.datafile, "utf8");
     if (!data) return [];
-    console.log({ data });
 
     return JSON.parse(data).taskList;
   }
 
   /**
-   *
+   Change done key in task from false to true
    */
   async makeTaskDone(taskName) {
     const taskList = await this.getData();
@@ -90,7 +89,7 @@ class TasksService {
   async getTaskByName(taskName) {
     const data = await this.getData();
 
-    return data.find((item) => item.task === taskName); // task or undefined
+    return data.find((item) => item.task === taskName);
   }
 }
 

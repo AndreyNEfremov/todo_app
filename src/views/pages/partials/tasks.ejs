@@ -2,23 +2,16 @@
 <ul class="list">
   <span class="list__item-text">Get: </span>
   <% taskList.forEach(function ({ task }) {%>
-  <li class="list__item">
-    <div class="checkbox"></div>
-    <span style="margin-left: 10px"><%= task %></span>
+  <li>
+    <form class="list__item" method="post">
+      <!-- <div class="checkbox"></div> -->
+      <input name="done" type="checkbox" class="checkbox" value="<%=task%>" />
+      <!-- <span style="margin-left: 10px"><%= task %></span> -->
+      <label for="done"><%= task %></label>
+    </form>
   </li>
   <%})%>
 </ul>
 <%} else {%>
 <h3 class="no-tasks">There is no tasks.</h3>
 <%}%>
-
-
-  <!-- < % doneListTask.forEach(function(item){ %>
-    <form class="item" action="/delete" method="post">
-        <div class="item">
-            <input type="checkbox" name="checkbox" value="< %=item._id%>" onchange="this.form.submit()">
-            <p> < %= task %> </p>
-        </div>
-        <input type="hidden" name="listName" value="< %= listTitle%>"></input>
-    </form>
-    < % }) %> -->

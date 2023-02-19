@@ -18,19 +18,21 @@ class TasksService {
   }
 
   /**
-   * Get task items
+   * Get task to done items
    */
-  async getTaskList() {
+  async getToDoTaskList() {
     const data = await this.getData();
-    return data.filter(item => item.done === false);
+
+    return data.filter((item) => !item.done);
   }
 
-    /**
+  /**
    * Get done task items
    */
   async getDoneTaskList() {
     const data = await this.getData();
-    return data.filter(item => item.done === true);
+
+    return data.filter((item) => item.done);
   }
 
   /**
@@ -42,7 +44,7 @@ class TasksService {
       throw new Error("Minimal length for task name is 3 letter!");
     }
 
-    const taskList = await this.getTaskList();
+    const taskList = await this.getToDoTaskList();
     const existingTask = taskList.find((item) => task === item.task);
 
     if (existingTask) {
@@ -60,7 +62,35 @@ class TasksService {
   async getData() {
     const data = await readFile(this.datafile, "utf8");
     if (!data) return [];
+    console.log({ data });
+
     return JSON.parse(data).taskList;
+  }
+
+  /**
+   *
+   */
+  async makeTaskDone(taskName) {
+    const taskList = await this.getData();
+
+    const newTaskList = taskList.map((item) => {
+      if (taskName === item.task) {
+        item.done = true;
+      }
+
+      return item;
+    });
+
+    await writeFile(this.datafile, JSON.stringify({ taskList: newTaskList }));
+  }
+
+  /**
+   * Get task by name
+   */
+  async getTaskByName(taskName) {
+    const data = await this.getData();
+
+    return data.find((item) => item.task === taskName); // task or undefined
   }
 }
 

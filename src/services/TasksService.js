@@ -53,7 +53,8 @@ class TasksService {
 
     const newTask = { task, done: false };
     taskList.push(newTask);
-    writeFile(this.datafile, JSON.stringify({ taskList }));
+
+    await writeFile(this.datafile, JSON.stringify({ taskList }));
   }
 
   /**

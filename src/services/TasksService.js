@@ -44,7 +44,7 @@ class TasksService {
       throw new Error("Minimal length for task name is 3 letter!");
     }
 
-    const taskList = await this.getToDoTaskList();
+    const taskList = await this.getData();
     const existingTask = taskList.find((item) => task === item.task);
 
     if (existingTask) {
@@ -52,7 +52,7 @@ class TasksService {
     }
 
     const newTask = { task, done: false };
-    taskList.unshift(newTask);
+    taskList.push(newTask);
     writeFile(this.datafile, JSON.stringify({ taskList }));
   }
 
@@ -61,6 +61,7 @@ class TasksService {
    */
   async getData() {
     const data = await readFile(this.datafile, "utf8");
+
     if (!data) return [];
 
     return JSON.parse(data).taskList;

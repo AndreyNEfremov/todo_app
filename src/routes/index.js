@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const doneRoute = require("./done");
+// const doneRoute = require("./done");
 
 const commonResponse = {
   pageTitle: "Simple TODO Application",
@@ -58,8 +58,6 @@ module.exports = (params) => {
       return next(err);
     }
   });
-
-  router.use("/done", doneRoute({ tasksService }));
 
   return router;
 };
